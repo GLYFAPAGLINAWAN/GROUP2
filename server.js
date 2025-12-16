@@ -1,28 +1,21 @@
-import dotenv from "dotenv";
-import supplyRoutes from "./routes/supplyRoutes.js";
-import connectDB from "./config/database.js";
-import express from "express";
-
+import express from 'express';
+import dotenv from 'dotenv';
+import supplyRoutes from './routes/supplyRoutes.js';
+import connectDB from './config/database.js';
 
 dotenv.config();
-
-// pag connect ha database
 connectDB();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
-// middleware para mag parse hin JSON requests meaning pirme JSON an body han request
 app.use(express.json());
-app.use("/api/supplies", supplyRoutes);
+app.use('/api/supplies', supplyRoutes);
 
-
-app.get("/", (req, res) => {
-  res.send(
-    `Hello, World! Running in ${process.env.NODE_ENV || "development"} mode.`
-  );
+app.get('/', (req, res) => {
+  res.send(`Hello! Running in ${process.env.NODE_ENV || "development"} mode.`);
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}/api/supplies`);
 });

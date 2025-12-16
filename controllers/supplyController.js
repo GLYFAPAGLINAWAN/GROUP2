@@ -1,8 +1,10 @@
-const Supply = require('../models/supplyModel');
-const { successResponse, errorResponse } = require('../helpers/responseHelper');
+// controllers/supplyController.js
+
+import Supply from '../models/supplyModel.js';
+import { successResponse, errorResponse } from '../helpers/responseHelper.js';
 
 // GET ALL SUPPLIES
-exports.getAllSupplies = async (req, res) => {
+export const getAllSupplies = async (req, res) => {
   try {
     const supplies = await Supply.find();
     successResponse(res, 'Supplies fetched successfully', supplies);
@@ -12,7 +14,7 @@ exports.getAllSupplies = async (req, res) => {
 };
 
 // CREATE SUPPLY
-exports.createSupply = async (req, res) => {
+export const createSupply = async (req, res) => {
   try {
     const supply = await Supply.create(req.body);
     successResponse(res, 'Supply created successfully', supply);
@@ -22,13 +24,9 @@ exports.createSupply = async (req, res) => {
 };
 
 // UPDATE SUPPLY
-exports.updateSupply = async (req, res) => {
+export const updateSupply = async (req, res) => {
   try {
-    const updated = await Supply.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const updated = await Supply.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
     if (!updated) {
       return errorResponse(res, 'Supply not found', null, 404);
@@ -41,7 +39,7 @@ exports.updateSupply = async (req, res) => {
 };
 
 // DELETE SUPPLY
-exports.deleteSupply = async (req, res) => {
+export const deleteSupply = async (req, res) => {
   try {
     const deleted = await Supply.findByIdAndDelete(req.query.id);
 

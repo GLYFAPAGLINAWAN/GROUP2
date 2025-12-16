@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+// models/supplyModel.js
+import mongoose from 'mongoose';
 
 const supplySchema = new mongoose.Schema({
   name: {
@@ -24,4 +25,6 @@ const supplySchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Supply', supplySchema);
+const Supply = mongoose.model('Supply', supplySchema);
+
+export default Supply;

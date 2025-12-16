@@ -1,4 +1,6 @@
-const successResponse = (res, message, data = null) => {
+// helpers/responseHelper.js
+
+export const successResponse = (res, message, data = null) => {
   res.status(200).json({
     success: true,
     message,
@@ -6,12 +8,10 @@ const successResponse = (res, message, data = null) => {
   });
 };
 
-const errorResponse = (res, message, error = null, status = 500) => {
+export const errorResponse = (res, message, error = null, status = 500) => {
   res.status(status).json({
     success: false,
     message,
     error
   });
 };
-
-module.exports = { successResponse, errorResponse };
